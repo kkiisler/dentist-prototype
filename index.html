@@ -211,7 +211,8 @@
       <a href="#" onclick="teade('Prototüübis on ainult avaleht ja implantaatide leht');return false">Hinnakiri</a>
       <a href="#" onclick="vaata('avaleht','#kontakt');return false">Kontakt</a>
       <span class="keel">ET ▾</span>
-      <a href="#" class="nupp" style="color:#fff" onclick="vaata('avaleht','#teenused');return false">Teenused</a>
+      <a href="#" class="nupp hele" onclick="vaata('avaleht','#teenused');return false">Teenused</a>
+      <a href="#" class="nupp" style="color:#fff" onclick="broneeri();return false">Broneeri aeg</a>
     </nav>
   </div>
 </header>
@@ -226,7 +227,7 @@
       <div class="silt">Hambakliinik Tallinna kesklinnas</div>
       <h1>Hambaravi, mida juhib kolmekümne aasta kogemus</h1>
       <p class="alam">Dr. Kristina Kiisa kliinik Tornimäel: üldhambaravi, juureravi, proteesimine ja puuduvate hammaste asendamine implantaatidega.</p>
-      <div class="bron">
+      <div class="bron" id="bron">
         <select aria-label="Millist protseduuri soovid?">
           <option>Millist protseduuri soovid?</option>
           <option>Hambakaped</option><option>Suukirurgia</option><option>Implantaadid</option>
@@ -502,6 +503,12 @@ function vaata(leht, ankur){
     if(el){el.scrollIntoView({behavior:'smooth'});return;}
   }
   window.scrollTo({top:0,behavior:'auto'});
+}
+function broneeri(){
+  var impl = !document.getElementById('leht-implantaadid').classList.contains('peidus');
+  var siht = impl ? '#konsult' : '#bron';
+  var el = document.querySelector(siht);
+  if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); }
 }
 var toastTimer=null;
 function teade(t){
